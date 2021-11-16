@@ -1,11 +1,9 @@
 package com.springboot.sample_api.user;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -41,6 +39,20 @@ public class UserController {
                 .toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        User user = this.service.deleteById(id);
+
+        if (user == null) {
+
+        }
+    }
+
+    @PutMapping("/users/{id}")
+    public void updateUser(@PathVariable int id, @PathVariable User user) {
+        User updatedUser = this.service.update(id, user);
     }
 
 
